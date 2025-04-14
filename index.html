@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anshuman Mohapatra - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+</head>
+<body>
+    <h1 class="page-title">Anshuman Mohapatra</h1>
+
+    <div id="main-container">
+        <div id="scene-container">
+            <canvas id="c"></canvas>
+        </div>
+
+        <div id="card-summary" class="info-card">
+            <h2>Summary</h2>
+            <div class="card-content">
+                <p>Developer passionate about blending programming and design to create seamless user experiences. Looking forward to leverage my technical expertise and education to contribute to the tech industry while seeking opportunities for growth in a dynamic environment.</p>
+                <p><strong>Contact:</strong> am8506@rit.edu | +1 (585) 615-2086</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/amffille" target="_blank">github.com/amffille</a></p>
+            </div>
+        </div>
+        <div id="card-skills" class="info-card">
+            <h2>Skills</h2>
+            <div class="card-content">
+                <ul>
+                    <li><strong>Development:</strong> Java, Python, R, SQL, Git/GitHub, HTML/CSS/JS, ReactJS, NodeJS</li>
+                    <li><strong>Database Management:</strong> pgAdmin, MySQL</li>
+                    <li><strong>Cloud:</strong> AWS, Firebase</li>
+                    <li><strong>Data Analysis:</strong> Tableau, Power BI, MS Access</li>
+                    <li><strong>Soft skills:</strong> Good communication skills, Very quick learner</li>
+                    <li><strong>Languages:</strong> English, Odia, Hindi</li>
+                 </ul>
+            </div>
+        </div>
+        <div id="card-projects" class="info-card">
+             <h2>Projects</h2>
+             <div class="card-content">
+                 <ul>
+                    <li>
+                        <strong>Taskmaster:</strong> <a href="https://github.com/amffille/taskmaster-app" target="_blank">github.com/amffille/taskmaster-app</a>
+                        <p style="padding-left: 1em; margin-top: 5px;">Task Master is a full-stack task management application built with React and Flask. It allows users to create, edit, and manage tasks efficiently while providing user authentication and personalized user management. The app features a modern and responsive UI with smooth transitions, glassmorphism design style.</p>
+                    </li>
+                    <li>
+                        <strong>ThirdDimension:</strong> <a href="https://github.com/amffille/ThirdDimension" target="_blank">github.com/amffille/ThirdDimension</a>
+                        <p style="padding-left: 1em; margin-top: 5px;">A web-based platform designed for viewing 3D models seamlessly. It lists all available 3D models stored on the server, allowing users to browse through them easily. The platform utilizes Three.js to render and display 3D models from the list, ensuring smooth visualization within the browser. Additionally, the UI is fully responsive, adapting effortlessly to various screen sizes, including mobile devices.</p>
+                    </li>
+                    <li>
+                        <strong>Research Papers - OBDA (Online Beverages Delivery Application) (2021):</strong> <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3843629" target="_blank">View Paper</a>
+                        <p style="padding-left: 1em; margin-top: 5px;">There is an increasing need for accessible beverage alternatives in restaurants. Using wireless technology, the Online Soft Drink Application solves this by offering a user-friendly, dynamic platform for rapid and affordable ordering in India.</p>
+                    </li>
+                 </ul>
+             </div>
+        </div>
+         <div id="card-experience" class="info-card">
+             <h2>Experience & Education</h2>
+             <div class="card-content">
+                 <p><strong>Experience:</strong></p>
+                 <ul>
+                    <li>
+                        <strong>Assistant Software Engineer</strong>, Tej Raj and Pal (Bhubaneswar, Odisha) | 9/2021-5/2022
+                        <ul style="padding-left: 1em; margin-top: 5px;"><li>Collaborating with senior engineers to design and implement solutions, troubleshoot issues, and ensure system performance.</li></ul>
+                    </li>
+                    <li>
+                        <strong>UX/UI Designer Intern</strong>, Kadence (Bengaluru, Karnataka) | 5/2021-7/2021
+                        <ul style="padding-left: 1em; margin-top: 5px;">
+                            <li>Designed multiple icons for kadence web page</li>
+                            <li>Created wireframes and hi fidelity prototypes for two apps</li>
+                        </ul>
+                    </li>
+                 </ul>
+                 <p><strong>Education:</strong></p>
+                 <ul>
+                    <li>Rochester Institute of Technology, NY - Masters in Data Science (2024 - ongoing)</li>
+                    <li>VIT, Bangalore - Post graduate program (2023-2024)</li>
+                    <li>Jain University, Bangalore - B-tech in CS specialized in cloud computing and mobile application (2017-2021)</li>
+                 </ul>
+             </div>
+        </div>
+
+        <div id="final-message">
+             <span id="final-message-text"></span> <span class="reset-prompt">(Press ESC to Reset)</span> </div>
+
+    </div>
+
+    <div id="instructions">Up/Down: Forward/Backwards | Left/Right: Rotate Left/Right | Space: Shoot</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
