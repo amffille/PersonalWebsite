@@ -1,3 +1,16 @@
+ // --- One-time Refresh Logic ---
+        // Use sessionStorage to ensure this runs only once per session visit
+        (function() {
+            if ( sessionStorage.getItem('refreshed_once') !== 'true' ) {
+                console.log('Performing one-time refresh to potentially fix load issues...');
+                sessionStorage.setItem('refreshed_once', 'true');
+                window.location.reload();
+            } else {
+                console.log('Already refreshed this session.');
+                sessionStorage.removeItem('refreshed_once');
+            }
+        })();
+
 
 
 // --- Basic Setup --- //
@@ -120,10 +133,10 @@ function animate() {
 
     // --- Plane Movement --- //
     const currentRotation = planeGroup.rotation.y; let isPlaneMoving = false;
-    if (keysPressed['arrowup']) { planeGroup.position.x += Math.cos(currentRotation) * planeSpeed; planeGroup.position.z += -Math.sin(currentRotation) * planeSpeed; isPlaneMoving = true; }
-    if (keysPressed['arrowdown']) { planeGroup.position.x += -Math.cos(currentRotation) * planeSpeed; planeGroup.position.z += Math.sin(currentRotation) * planeSpeed; isPlaneMoving = true; }
-    if (keysPressed['arrowleft']) { planeGroup.rotation.y += rotationSpeed; isPlaneMoving = true; }
-    if (keysPressed['arrowright']) { planeGroup.rotation.y -= rotationSpeed; isPlaneMoving = true; }
+    if (keysPressed['w']||keysPressed['arrowup']) { planeGroup.position.x += Math.cos(currentRotation) * planeSpeed; planeGroup.position.z += -Math.sin(currentRotation) * planeSpeed; isPlaneMoving = true; }
+    if (keysPressed['s']||keysPressed['arrowdown']) { planeGroup.position.x += -Math.cos(currentRotation) * planeSpeed; planeGroup.position.z += Math.sin(currentRotation) * planeSpeed; isPlaneMoving = true; }
+    if (keysPressed['a']||keysPressed['arrowleft']) { planeGroup.rotation.y += rotationSpeed; isPlaneMoving = true; }
+    if (keysPressed['d']||keysPressed['arrowright']) { planeGroup.rotation.y -= rotationSpeed; isPlaneMoving = true; }
 
     // --- Toggle Animation Classes Based on State --- //
      if (isShooting) {
