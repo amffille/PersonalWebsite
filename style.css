@@ -15,7 +15,7 @@
 }
 
 /* --- Base Styles --- */
-body { justify-content: center; margin: 0; overflow: hidden; font-family: 'Press Start 2P', cursive; background-color: #737099; color: #000; display: flex;  align-items: center; min-height: 100vh; flex-direction: column; padding-top: 0px; padding-bottom: 0px; }
+body { touch-action: pan-x pan-y; justify-content: center; margin: 0; overflow: hidden; font-family: 'Press Start 2P', cursive; background-color: #737099; color: #000; display: flex;  align-items: center; min-height: 100vh; flex-direction: column; padding-top: 0px; padding-bottom: 0px; }
 h1.page-title { font-family: 'Press Start 2P', cursive; color: #B6FF00; font-size: 3em; margin-bottom: 20px; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
 #main-container { position: relative; width: 90vw; max-width: 70%; height: 1000px; max-height: 2000px; }
 #scene-container {
