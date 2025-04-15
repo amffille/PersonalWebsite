@@ -26,7 +26,7 @@ const scene = new THREE.Scene();
 
 // --- Camera --- //
 const initialAspect = sceneContainerElement.clientWidth / sceneContainerElement.clientHeight || 1;
-const frustumSize = 35;
+const frustumSize = 45;
 const camera = new THREE.OrthographicCamera( frustumSize * initialAspect / -2, frustumSize * initialAspect / 2, frustumSize / 2, frustumSize / -2, 0.1, 1000 );
 camera.position.set(0, 20, 0); camera.lookAt(scene.position); camera.zoom = 1; camera.updateProjectionMatrix();
 
@@ -54,9 +54,9 @@ function createLabelSprite(text, fontSize = 20, fontFace = "'Press Start 2P', cu
 // --- Portfolio Sections --- //
 const sections = [
     { id: 'summary', position: new THREE.Vector3(0, 0, -12), color: 0xB6FF00, title: "Summary" },    // Green Accent
-    { id: 'skills', position: new THREE.Vector3(15, 0, 0), color: 0x737099, title: "Skills" },       // Dark Purple (Body BG)
+    { id: 'skills', position: new THREE.Vector3(10, 0, 0), color: 0x737099, title: "Skills" },       // Dark Purple (Body BG)
     { id: 'projects', position: new THREE.Vector3(0, 0, 12), color: 0x9370DB, title: "Projects" },   // Medium Purple
-    { id: 'experience', position: new THREE.Vector3(-15, 0, 0), color: 0xF5F5F5, title: "Experience" } // White
+    { id: 'experience', position: new THREE.Vector3(-10, 0, 0), color: 0xF5F5F5, title: "Experience" } // White
 ];
 let sectionMeshes = []; const sectionRadius = 2; const sectionGeometry = new THREE.CylinderGeometry(sectionRadius, sectionRadius, 0.2, 32); const labelYOffset = 1.5; let sectionLabels = {}; const HITS_TO_BREAK = 5; const CRACK_CANVAS_SIZE = 128;
 
@@ -285,6 +285,44 @@ window.onload = function() {
              createSections();
              onWindowResize();
              requestAnimationFrame(animate);
+
+              // --- Set up on-screen control listeners ---
+            const upButton = document.querySelector('.up');
+            const downButton = document.querySelector('.down');
+            const leftButton = document.querySelector('.left');
+            const rightButton = document.querySelector('.right');
+            const shootButton = document.querySelector('.shoot');
+
+            if (upButton) {
+                upButton.addEventListener('mousedown', () => { keysPressed['w'] = true; });
+                upButton.addEventListener('mouseup', () => { keysPressed['w'] = false; });
+                upButton.addEventListener('touchstart', () => { keysPressed['w'] = true; }, { passive: true });
+                upButton.addEventListener('touchend', () => { keysPressed['w'] = false; });
+            }
+            if (downButton) {
+                downButton.addEventListener('mousedown', () => { keysPressed['s'] = true; });
+                downButton.addEventListener('mouseup', () => { keysPressed['s'] = false; });
+                downButton.addEventListener('touchstart', () => { keysPressed['s'] = true; }, { passive: true });
+                downButton.addEventListener('touchend', () => { keysPressed['s'] = false; });
+            }
+            if (leftButton) {
+                leftButton.addEventListener('mousedown', () => { keysPressed['a'] = true; });
+                leftButton.addEventListener('mouseup', () => { keysPressed['a'] = false; });
+                leftButton.addEventListener('touchstart', () => { keysPressed['a'] = true; }, { passive: true });
+                leftButton.addEventListener('touchend', () => { keysPressed['a'] = false; });
+            }
+            if (rightButton) {
+                rightButton.addEventListener('mousedown', () => { keysPressed['d'] = true; });
+                rightButton.addEventListener('mouseup', () => { keysPressed['d'] = false; });
+                rightButton.addEventListener('touchstart', () => { keysPressed['d'] = true; }, { passive: true });
+                rightButton.addEventListener('touchend', () => { keysPressed['d'] = false; });
+            }
+            if (shootButton) {
+                shootButton.addEventListener('mousedown', () => { isShooting = true; });
+                shootButton.addEventListener('mouseup', () => { isShooting = false; });
+                shootButton.addEventListener('touchstart', () => { isShooting = true; }, { passive: true });
+                shootButton.addEventListener('touchend', () => { isShooting = false; });
+            }
          })
          .catch((err) => {
              console.error("Font loading error or timeout:", err);
