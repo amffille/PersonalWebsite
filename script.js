@@ -49,16 +49,16 @@ function playSound(soundName, note = "C4", duration = "8n", time = "+0") { if (!
 function playBreakSound() { if (!audioStarted || !sounds.break || !sounds.breakThud) return; try { sounds.break.triggerAttackRelease("0.2"); sounds.breakThud.triggerAttackRelease("C2", "0.3", "+0.01"); } catch (e) { console.error(`Error playing break sound:`, e); } }
 
 // --- Function to create text labels --- //
-function createLabelSprite(text, fontSize = 20, fontFace = "'Press Start 2P', cursive", textColor = 'rgba(0, 0, 0, 1.0)') { const canvas = document.createElement('canvas'); const context = canvas.getContext('2d'); const font = `${fontSize}px ${fontFace}`; context.font = font; const metrics = context.measureText(text); const textWidth = metrics.width; canvas.width = textWidth + fontSize * 0.4; canvas.height = fontSize + fontSize * 0.4; context.font = font; context.fillStyle = textColor; context.textAlign = 'center'; context.textBaseline = 'middle'; context.fillText(text, canvas.width / 2, canvas.height / 2); const texture = new THREE.CanvasTexture(canvas); texture.needsUpdate = true; const spriteMaterial = new THREE.SpriteMaterial({ map: texture }); const sprite = new THREE.Sprite(spriteMaterial); sprite.scale.set(canvas.width / fontSize * 0.6, canvas.height / fontSize * 0.6, 1.0); return sprite; }
+function createLabelSprite(text, fontSize = 400, fontFace = "'Press Start 2P', cursive", textColor = '#FFFFFF') { const canvas = document.createElement('canvas'); const context = canvas.getContext('2d'); const font = `${fontSize}px ${fontFace}`; context.font = font; const metrics = context.measureText(text); const textWidth = metrics.width; canvas.width = textWidth + fontSize * 0.4; canvas.height = fontSize + fontSize * 0.4; context.font = font; context.fillStyle = textColor; context.textAlign = 'center'; context.textBaseline = 'middle'; context.fillText(text, canvas.width / 2, canvas.height / 2); const texture = new THREE.CanvasTexture(canvas); texture.needsUpdate = true; const spriteMaterial = new THREE.SpriteMaterial({ map: texture }); const sprite = new THREE.Sprite(spriteMaterial); sprite.scale.set(canvas.width / fontSize * 0.6, canvas.height / fontSize * 0.6, 1.0); return sprite; }
 
 // --- Portfolio Sections --- //
 const sections = [
-    { id: 'summary', position: new THREE.Vector3(0, 0, -12), color: 0xB6FF00, title: "Summary" },    // Green Accent
-    { id: 'skills', position: new THREE.Vector3(10, 0, 0), color: 0x737099, title: "Skills" },       // Dark Purple (Body BG)
-    { id: 'projects', position: new THREE.Vector3(0, 0, 12), color: 0x9370DB, title: "Projects" },   // Medium Purple
-    { id: 'experience', position: new THREE.Vector3(-10, 0, 0), color: 0xF5F5F5, title: "Experience" } // White
+    { id: 'summary', position: new THREE.Vector3(0, 0, -12), color: 0xFF00E1, title: "Summary" },    // Green Accent
+    { id: 'skills', position: new THREE.Vector3(10, 0, 0), color: 0x003CFF, title: "Skills" },       // Dark Purple (Body BG)
+    { id: 'projects', position: new THREE.Vector3(0, 0, 12), color: 0x260B68, title: "Projects" },   // Medium Purple
+    { id: 'experience', position: new THREE.Vector3(-10, 0, 0), color: 0x100225, title: "Experience" } // White
 ];
-let sectionMeshes = []; const sectionRadius = 2; const sectionGeometry = new THREE.CylinderGeometry(sectionRadius, sectionRadius, 0.2, 32); const labelYOffset = 1.5; let sectionLabels = {}; const HITS_TO_BREAK = 5; const CRACK_CANVAS_SIZE = 128;
+let sectionMeshes = []; const sectionRadius = 2.5; const sectionGeometry = new THREE.CylinderGeometry(sectionRadius, sectionRadius, 0.2, 32); const labelYOffset = 1.5; let sectionLabels = {}; const HITS_TO_BREAK = 5; const CRACK_CANVAS_SIZE = 128;
 
 function createSections() {
     
@@ -81,7 +81,7 @@ function createSections() {
 }
 
 // --- Shooting Mechanics --- //
-const bullets = []; const bulletGeometry = new THREE.SphereGeometry(0.15, 8, 8); const bulletMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 }); const bulletSpeed = 0.3; let isShooting = false; let lastShotTime = 0; const shootCooldown = 150;
+const bullets = []; const bulletGeometry = new THREE.SphereGeometry(0.15, 8, 8); const bulletMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF }); const bulletSpeed = 0.3; let isShooting = false; let lastShotTime = 0; const shootCooldown = 150;
 
 // --- Plane Controls & Shooting --- //
 const keysPressed = {}; const planeSpeed = 0.15; const rotationSpeed = 0.05;
@@ -230,10 +230,11 @@ function animate() {
         activeSectionMesh = newlyDetectedSection; const cardId = 'card-' + activeSectionMesh.userData.id; activeCardElement = document.getElementById(cardId);
         if (activeCardElement) {
             const screenPosition = getScreenPosition(activeSectionMesh, camera, sceneContainerElement);
-            activeCardElement.style.left = `${screenPosition.x}px`; activeCardElement.style.top = `${screenPosition.y}px`;
+            if(window.innerWidth > 700) {activeCardElement.style.left = `${screenPosition.x}px`; activeCardElement.style.top = `${screenPosition.y}px`;}else{activeCardElement.style.left = `50%`; activeCardElement.style.top = `50%`;}
             const cardContent = activeCardElement.querySelector('.card-content'); if (cardContent) cardContent.scrollTop = 0;
             setTimeout(() => { activeCardElement.classList.add('visible'); playSound('cardOpen', 'C4', '8n'); }, 10);
         }
+
     } else if (!newlyDetectedSection && activeSectionMesh) {
          if (activeCardElement) { activeCardElement.classList.remove('visible'); playSound('cardClose', 'C3', '8n'); }
          activeSectionMesh = null; activeCardElement = null;
