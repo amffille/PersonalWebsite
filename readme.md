@@ -2,7 +2,7 @@
 
 ## Overview
 
-This portfolio is a dynamic and interactive webpage showcasing the skills, projects, and experience of Anshuman Mohapatra. It is built using HTML, CSS, and JavaScript, incorporating Three.js for 3D scene rendering and Tone.js for sound effects.
+This portfolio is a dynamic and interactive webpage showcasing my skills, projects, and experience. It is built using HTML, CSS, and JavaScript, incorporating Three.js for 3D scene rendering and Tone.js for sound effects.
 
 ## Key Features
 
